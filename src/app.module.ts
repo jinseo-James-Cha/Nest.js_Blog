@@ -2,7 +2,6 @@
 import { Module } from '@nestjs/common';
 import { BoardsModule } from './boards/boards.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
 import { TypeORMConfig } from './configs/typeorm.config';
 
 @Module({
@@ -13,6 +12,4 @@ import { TypeORMConfig } from './configs/typeorm.config';
   controllers: [],
   providers: [],
 })
-export class AppModule {
-  constructor(private connection: Connection) {}
-}
+export class AppModule {}
