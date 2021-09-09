@@ -47,10 +47,10 @@ export class BoardsService {
   }
 
   async updateBoard(
-    updateid: number,
+    id: number,
     updateBoardDto: UpdateBoardDto,
   ): Promise<Board> {
-    const board = await this.getBoardById(updateid);
+    const board = await this.getBoardById(id);
 
     board.title = updateBoardDto.title;
     board.description = updateBoardDto.description;
@@ -58,5 +58,11 @@ export class BoardsService {
 
     await this.boardRepository.save(board);
     return board;
+  }
+
+  async deleteBoard(id: number): Promise<void> {
+    const board = await this.boardRepository.delete(id);
+
+    console.log(board);
   }
 }
