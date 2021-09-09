@@ -19,4 +19,14 @@ export class BoardsService {
 
     return found;
   }
+
+  async getAllBoards(): Promise<Board[]> {
+    const boards = await this.boardRepository.find();
+
+    if (!boards) {
+      throw new NotFoundException(`There is no boards in DB`);
+    }
+
+    return boards;
+  }
 }

@@ -10,4 +10,9 @@ export class BoardsController {
   getBoardById(@Param('id') id: number): Promise<Board> {
     return this.boardsService.getBoardById(id);
   }
+
+  @Get()
+  getAllBoards(): Promise<Board[]> {
+    return this.boardsService.getAllBoards();
+  }
 }
