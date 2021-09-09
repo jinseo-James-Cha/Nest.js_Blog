@@ -4,6 +4,7 @@ import { BoardStatus } from './board-status.enum';
 import { Board } from './board.entity';
 import { BoardRepository } from './board.repository';
 import { CreateBoardDto } from './dto/create-board.dto';
+import { UpdateBoardDto } from './dto/update-board.dto';
 
 @Injectable()
 export class BoardsService {
@@ -40,6 +41,20 @@ export class BoardsService {
       description,
       status: BoardStatus.PUBLIC, // setting status PUBLIC as a default
     });
+
+    await this.boardRepository.save(board);
+    return board;
+  }
+
+  async updateBoard(
+    updateid: number,
+    updateBoardDto: UpdateBoardDto,
+  ): Promise<Board> {
+    const board = await this.getBoardById(updateid);
+
+    board.title = updateBoardDto.title;
+    board.description = updateBoardDto.description;
+    board.status = updateBoardDto.status;
 
     await this.boardRepository.save(board);
     return board;
