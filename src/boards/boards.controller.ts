@@ -5,7 +5,7 @@ import { CreateBoardDto } from './dto/create-board.dto';
 
 @Controller('boards')
 export class BoardsController {
-  constructor(private boardsService: BoardsService) {} // Dependency Injection
+  constructor(private boardsService: BoardsService) {}
 
   @Get('/:id')
   getBoardById(@Param('id') id: number): Promise<Board> {
