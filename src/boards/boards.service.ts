@@ -34,12 +34,12 @@ export class BoardsService {
   }
 
   async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
-    const { title, description } = createBoardDto;
+    const { title, description, status } = createBoardDto;
 
     const board = this.boardRepository.create({
       title,
       description,
-      status: BoardStatus.PUBLIC, // setting status PUBLIC as a default
+      status,
     });
 
     await this.boardRepository.save(board);
