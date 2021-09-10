@@ -7,10 +7,12 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { BoardStatus } from './board-status.enum';
 import { Board } from './board.entity';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
+import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
 
 @Controller('boards')
 export class BoardsController {
@@ -27,7 +29,10 @@ export class BoardsController {
   }
 
   @Post()
-  createBoard(@Body() createBoardDto: CreateBoardDto): Promise<Board> {
+  createBoard(
+    @Body('status', BoardStatusValidationPipe) status: BoardStatus,
+    @Body() createBoardDto: CreateBoardDto,
+  ): Promise<Board> {
     return this.boardsService.createBoard(createBoardDto);
   }
 
