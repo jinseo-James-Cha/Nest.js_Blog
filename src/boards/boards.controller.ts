@@ -6,8 +6,6 @@ import {
   Param,
   Post,
   Put,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { Board } from './board.entity';
 import { BoardsService } from './boards.service';
@@ -29,7 +27,6 @@ export class BoardsController {
   }
 
   @Post()
-  @UsePipes(new ValidationPipe({ transform: true })) // default value set
   createBoard(@Body() createBoardDto: CreateBoardDto): Promise<Board> {
     return this.boardsService.createBoard(createBoardDto);
   }
