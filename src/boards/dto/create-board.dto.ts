@@ -1,4 +1,4 @@
-import { IsEnum, IsIn, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
 import { BoardStatus } from '../board-status.enum';
 
 export class CreateBoardDto {

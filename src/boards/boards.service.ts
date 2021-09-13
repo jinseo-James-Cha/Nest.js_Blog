@@ -63,6 +63,10 @@ export class BoardsService {
   async deleteBoard(id: number): Promise<void> {
     const board = await this.boardRepository.delete(id);
 
+    if (board.affected === 0) {
+      throw new NotFoundException(`cannot find id Board with ${id}`);
+    }
+
     console.log(board);
   }
 }
