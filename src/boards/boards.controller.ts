@@ -29,10 +29,7 @@ export class BoardsController {
   }
 
   @Post()
-  createBoard(
-    @Body('status', BoardStatusValidationPipe) status: BoardStatus,
-    @Body() createBoardDto: CreateBoardDto,
-  ): Promise<Board> {
+  createBoard(@Body() createBoardDto: CreateBoardDto): Promise<Board> {
     return this.boardsService.createBoard(createBoardDto);
   }
 
