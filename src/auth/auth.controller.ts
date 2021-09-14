@@ -1,4 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 
@@ -16,5 +17,11 @@ export class AuthController {
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ accessToken: string }> {
     return this.authService.signIn(authCredentialsDto);
+  }
+
+  @Post('/test')
+  @UseGuards(AuthGuard()) // 인증에 미들웨어 처리. 토큰체크, 401 에러발생.
+  test(@Req() req) {
+    console.log('log', req);
   }
 }
