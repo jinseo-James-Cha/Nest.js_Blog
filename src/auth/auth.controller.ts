@@ -22,13 +22,13 @@ export class AuthController {
   }
 
   @Post('/test')
-  @UseGuards(AuthGuard()) // 인증에 미들웨어 처리. 토큰체크, 401 에러발생.
+  @UseGuards(AuthGuard())
   test(@Req() req) {
     console.log('log', req);
   }
 
-  @Post('/test')
-  @UseGuards(AuthGuard()) // 인증에 미들웨어 처리. 토큰체크, 401 에러발생.
+  @Post('/testCustom')
+  @UseGuards(AuthGuard())
   testCustomDecorator(@GetUser() user: User) {
     console.log('user', user);
   }
