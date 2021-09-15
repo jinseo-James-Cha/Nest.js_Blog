@@ -20,15 +20,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
   
   
-  /* The validate method of your JwtStrategy will only be called 
-  when the token has been verified in terms of the encryption 
-  (corrrect key was used to sign it, in your case secretKey) and it is not expired. 
-  Only after those two things have been checked, validate is called with the payload. 
-  With it, you can then e.g. check if the user still exists. So the three steps are:
+  /*  The validate method of your JwtStrategy will only be called 
+      when the token has been verified in terms of the encryption 
+      (corrrect key was used to sign it, in your case secretKey) and it is not expired. 
+      Only after those two things have been checked, validate is called with the payload. 
+      With it, you can then e.g. check if the user still exists. So the three steps are:
  
-  1. Token was signed with your secret key
- 2. Token is not expired
- 3. Custom payload validation
+      1. Token was signed with your secret key
+      2. Token is not expired
+      3. Custom payload validation
   */
   async validate(payload) {
       console.log(payload);
