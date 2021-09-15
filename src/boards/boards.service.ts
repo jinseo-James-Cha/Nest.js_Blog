@@ -24,8 +24,13 @@ export class BoardsService {
     return found;
   }
 
-  async getAllBoards(): Promise<Board[]> {
-    const boards = await this.boardRepository.find();
+  async getAllBoards(user: User): Promise<Board[]> {
+    const query = this.boardRepository.createQueryBuilder('board'); //
+
+    query.where('board.userId = :userId', { userId: user.id });
+
+    // const boards = await this.boardRepository.find();
+    const boards = await query.getMany();
 
     if (!boards) {
       throw new NotFoundException(`There is no boards in DB`);
