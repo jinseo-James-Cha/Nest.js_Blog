@@ -6,15 +6,17 @@ import {
   Param,
   Post,
   Put,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
-import { BoardStatus } from './board-status.enum';
+import { AuthGuard } from '@nestjs/passport';
 import { Board } from './board.entity';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
-import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
 
 @Controller('boards')
+@UseGuards(AuthGuard())
 export class BoardsController {
   constructor(private boardsService: BoardsService) {}
 
@@ -24,7 +26,8 @@ export class BoardsController {
   }
 
   @Get()
-  getAllBoards(): Promise<Board[]> {
+  getAllBoards(@Req() req): Promise<Board[]> {
+    console.log(req);
     return this.boardsService.getAllBoards();
   }
 
