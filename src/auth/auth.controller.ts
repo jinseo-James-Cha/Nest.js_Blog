@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
@@ -31,5 +31,10 @@ export class AuthController {
   @UseGuards(AuthGuard())
   testCustomDecorator(@GetUser() user: User) {
     console.log('user', user);
+  }
+
+  @Get('/users')
+  getAllUsers(): Promise<User[]> {
+    return this.authService.getAllUsers();
   }
 }

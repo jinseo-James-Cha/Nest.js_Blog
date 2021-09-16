@@ -4,6 +4,7 @@ import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { UserRepository } from './user.repository';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
+import { User } from './user.entity';
 
 @Injectable()
 export class AuthService {
@@ -32,5 +33,9 @@ export class AuthService {
     } else {
       throw new UnauthorizedException('login failed');
     }
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return this.userRepository.find();
   }
 }
