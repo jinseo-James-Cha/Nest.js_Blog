@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  const logger = new Logger();
   const app = await NestFactory.create(AppModule);
 
   // Global Pipe
@@ -18,5 +19,6 @@ async function bootstrap() {
   await app.listen(port);
 
   Logger.log(`Application running on port ${port}`);
+  // logger.log(`Application running on port ${port}`);
 }
 bootstrap();

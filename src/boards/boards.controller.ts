@@ -20,7 +20,7 @@ import { UpdateBoardDto } from './dto/update-board.dto';
 @Controller('boards')
 @UseGuards(AuthGuard())
 export class BoardsController {
-  private logger = new Logger('BoardsController');
+  private logger = new Logger('JamesBoardsController');
 
   constructor(private boardsService: BoardsService) {}
 
@@ -31,6 +31,10 @@ export class BoardsController {
 
   @Get()
   getAllBoards(@GetUser() user: User): Promise<Board[]> {
+    this.logger.log(`User ${user.username} trying to get all boards`);
+    this.logger.error(`User ${user.username} trying to get all boards`);
+    this.logger.warn(`User ${user.username} trying to get all boards`);
+    this.logger.debug(`User ${user.username} trying to get all boards`);
     this.logger.verbose(`User ${user.username} trying to get all boards`);
     return this.boardsService.getAllBoards(user);
   }
