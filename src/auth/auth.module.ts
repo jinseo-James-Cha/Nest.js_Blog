@@ -11,7 +11,7 @@ import { UserRepository } from './user.repository';
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: 'Secret1234',
+      secret: 'Secret1234', // need to make a signature and match the token
       signOptions: {
         expiresIn: 3600,
       },
