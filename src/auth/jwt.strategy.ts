@@ -20,7 +20,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
   
   
-  /*  The validate method of your JwtStrategy will only be called 
+  /*  
+      The validate method of your JwtStrategy will only be called 
       when the token has been verified in terms of the encryption 
       (corrrect key was used to sign it, in your case secretKey) and it is not expired. 
       Only after those two things have been checked, validate is called with the payload. 
