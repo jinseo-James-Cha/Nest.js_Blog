@@ -5,6 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { User } from "./user.entity";
 import { UserRepository } from "./user.repository";
+import * as config from 'config';
 
 // internally execute when Authguard() needed
 @Injectable()
@@ -14,8 +15,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private userRepository: UserRepository
   ) {
       super({
-        secretOrKey: 'Secret1234', // 1
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // 2
+        secretOrKey: process.env.JWT_SECRET || config.get('jwt.secret'), // 1
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       })
   }
   
