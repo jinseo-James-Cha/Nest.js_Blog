@@ -16,6 +16,7 @@ import { Board } from './board.entity';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
+import { boardLogger } from 'src/winston.logger';
 
 @Controller('boards')
 @UseGuards(AuthGuard())
@@ -31,6 +32,10 @@ export class BoardsController {
 
   @Get()
   getAllBoards(@GetUser() user: User): Promise<Board[]> {
+    boardLogger.info(
+      `In ${BoardsController.name} User ${user.username} trying to get all boards`,
+    );
+
     this.logger.log(`User ${user.username} trying to get all boards`);
     this.logger.error(`User ${user.username} trying to get all boards`);
     this.logger.warn(`User ${user.username} trying to get all boards`);

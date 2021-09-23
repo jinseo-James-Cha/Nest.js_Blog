@@ -1,7 +1,8 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as config from 'config'; // 1
+import * as config from 'config';
+import { winstonLogger } from './winston.logger';
 
 async function bootstrap() {
   const logger = new Logger();
@@ -24,5 +25,7 @@ async function bootstrap() {
 
   Logger.log(`Application running on port ${port}`);
   logger.log(`Application running on port ${port}`);
+
+  winstonLogger.info(`Application running on port ${port}`);
 }
 bootstrap();
