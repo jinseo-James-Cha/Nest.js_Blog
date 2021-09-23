@@ -1,5 +1,6 @@
 import * as winston from 'winston';
 import * as dotenv from 'dotenv';
+import SlackHook, * as slackWebHook from 'winston-slack-webhook-transport';
 const { combine, timestamp, printf } = winston.format;
 
 dotenv.config();
@@ -44,6 +45,11 @@ export const boardLogger = winston.createLogger({
       maxsize: 5242880,
       maxFiles: 7,
       filename: './logs/board.info.log',
+    }),
+
+    // add slack hook
+    new SlackHook({
+      webhookUrl: 'https://the-testwebhook.slack.com/archives/C02FKJ2S5DJ',
     }),
   ],
 });
