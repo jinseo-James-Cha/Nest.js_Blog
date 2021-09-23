@@ -1,6 +1,7 @@
 import * as winston from 'winston';
 import * as dotenv from 'dotenv';
-import SlackHook = require('winston-slack-webhook-transport');
+import * as SlackHooks from 'winston-slack-webhook-transport'; // ok
+import SlackHook = require('winston-slack-webhook-transport'); // ok
 const { combine, timestamp, printf } = winston.format;
 
 dotenv.config();
@@ -59,7 +60,7 @@ export const hookLogger = winston.createLogger({
   ),
   transports: [
     // add slack hook
-    new SlackHook({
+    new SlackHooks({
       webhookUrl:
         'https://hooks.slack.com/services/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',
     }),
