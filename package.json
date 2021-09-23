@@ -42,6 +42,7 @@
     "rxjs": "^7.2.0",
     "typeorm": "^0.2.37",
     "winston": "^3.3.3",
+    "winston-slack-webhook": "^0.1.6",
     "winston-slack-webhook-transport": "^2.0.1"
   },
   "devDependencies": {
