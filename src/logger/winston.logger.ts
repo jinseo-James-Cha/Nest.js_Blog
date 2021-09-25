@@ -25,6 +25,14 @@ export const winstonLogger = winston.createLogger({
       maxFiles: 7,
       filename: './logs/combined.log',
     }),
+    //warning
+    new winston.transports.File({
+      level: 'warn',
+      handleExceptions: true,
+      maxsize: 5242880,
+      maxFiles: 7,
+      filename: './logs/warning.log',
+    }),
   ],
 });
 
@@ -60,7 +68,7 @@ export const hookLogger = winston.createLogger({
     // add slack hook
     new SlackHooks({
       webhookUrl:
-        'https://hooks.slack.com/services/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',
+        'https://hooks.slack.com/services/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',
     }),
   ],
 });

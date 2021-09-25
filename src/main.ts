@@ -2,7 +2,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as config from 'config';
-import { winstonLogger } from './logger/winston.logger';
+import { hookLogger, winstonLogger } from './logger/winston.logger';
 
 async function bootstrap() {
   const logger = new Logger();
@@ -26,6 +26,9 @@ async function bootstrap() {
   Logger.log(`Application running on port ${port}`);
   logger.log(`Application running on port ${port}`);
 
+  winstonLogger.log('warn', `Application running on port ${port}`);
+  winstonLogger.error(`Application running on port ${port}`);
   winstonLogger.info(`Application running on port ${port}`);
+  winstonLogger.silly(`Application running on port ${port}`);
 }
 bootstrap();
