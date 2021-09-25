@@ -1,11 +1,8 @@
 import * as winston from 'winston';
-import * as dotenv from 'dotenv';
 import * as SlackHooks from 'winston-slack-webhook-transport'; // ok
 import SlackHook = require('winston-slack-webhook-transport'); // ok
 // import * as SlackHook2 from 'winston-slack-webhook'; why not this?
 const { combine, timestamp, printf } = winston.format;
-
-dotenv.config();
 
 const logFormat = printf(({ level, message, timestamp }) => {
   return `${timestamp} ${level}: ${message}`;
