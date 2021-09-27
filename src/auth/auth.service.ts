@@ -11,7 +11,7 @@ export class AuthService {
   constructor(
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
-    private jwtService: JwtService, // 1
+    private jwtService: JwtService,
   ) {}
 
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
@@ -25,9 +25,8 @@ export class AuthService {
     const user = await this.userRepository.findOne({ username });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      // log in success
-      const payload = { username }; // 3 Don't put a crucial information in payload
-      const accessToken = await this.jwtService.sign(payload); // 4 this method makes a token with Secret text + payload
+      const payload = { username };
+      const accessToken = await this.jwtService.sign(payload);
 
       return { accessToken };
     } else {
