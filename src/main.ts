@@ -23,8 +23,8 @@ async function bootstrap() {
   // const port = 3000;
   await app.listen(port);
 
-  Logger.log(`Application running on port ${port}`);
-  logger.log(`Application running on port ${port}`);
+  // Logger.log(`Application running on port ${port}`);
+  // logger.log(`Application running on port ${port}`);
 
   winstonLogger.log('warn', `Application running on port ${port}`);
   winstonLogger.error(`Application running on port ${port}`);
