@@ -36,9 +36,9 @@ export class BoardsController {
       `In ${BoardsController.name} User ${user.username} trying to get all boards`,
     );
 
-    hookLogger.info(
-      `In ${BoardsController.name} User ${user.username} trying to get all boards`,
-    );
+    // hookLogger.info(
+    //   `In ${BoardsController.name} User ${user.username} trying to get all boards`,
+    // );
 
     this.logger.log(`User ${user.username} trying to get all boards`);
     this.logger.error(`User ${user.username} trying to get all boards`);
