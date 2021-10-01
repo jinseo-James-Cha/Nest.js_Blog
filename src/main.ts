@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as config from 'config';
 import { hookLogger, winstonLogger } from './logger/winston.logger';
+import { functionalLogger } from './middleware/logger.middleware';
 
 async function bootstrap() {
   const logger = new Logger();
@@ -10,6 +11,8 @@ async function bootstrap() {
 
   const serverConfig = config.get('server'); // 2
   const port = serverConfig.port; // 3
+
+  app.use(functionalLogger);
 
   // Global Pipe
   app.useGlobalPipes(

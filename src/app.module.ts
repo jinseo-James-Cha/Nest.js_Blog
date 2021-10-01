@@ -21,8 +21,13 @@ export class AppModule implements NestModule {
     // (e.g., you can await completion of an asynchronous operation inside the configure() method body).
     consumer
       .apply(LoggerMiddleware)
+      .exclude(
+        { path: 'boards', method: RequestMethod.POST },
+        'boards/(.*)',
+      )
       .forRoutes('boards');
-      // .forRoutes({ path: 'boards', method: RequestMethod.GET }); 
+      // .forRoutes({ path: 'boards', method: RequestMethod.GET });
+      // .forRoutes(BoardController);
       // urther restrict a middleware to a particular request method by passing an object 
       // containing the route path and request method to the forRoutes() method
   }
