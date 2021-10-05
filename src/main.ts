@@ -13,7 +13,8 @@ async function bootstrap() {
   const serverConfig = config.get('server');
   const port = serverConfig.port;
 
-  app.use(helmet());
+  app.use(helmet.hidePoweredBy());
+  // app.use(helmet());
   app.use(functionalLogger);
 
   // Global Pipe
