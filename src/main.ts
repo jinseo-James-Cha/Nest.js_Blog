@@ -4,14 +4,16 @@ import { AppModule } from './app.module';
 import * as config from 'config';
 import { hookLogger, winstonLogger } from './logger/winston.logger';
 import { functionalLogger } from './middleware/logger.middleware';
+import * as helmet from 'helmet';
 
 async function bootstrap() {
   const logger = new Logger();
   const app = await NestFactory.create(AppModule);
 
-  const serverConfig = config.get('server'); // 2
-  const port = serverConfig.port; // 3
+  const serverConfig = config.get('server');
+  const port = serverConfig.port;
 
+  app.use(helmet());
   app.use(functionalLogger);
 
   // Global Pipe
@@ -23,7 +25,6 @@ async function bootstrap() {
     }),
   );
 
-  // const port = 3000;
   await app.listen(port);
 
   // Logger.log(`Application running on port ${port}`);
