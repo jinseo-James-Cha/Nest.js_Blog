@@ -33,7 +33,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       3. Custom payload validation
   */
   async validate(payload) {
-      console.log(payload);
+      console.log('payload', payload);
       const { username } = payload;
       const user: User = await this.userRepository.findOne({ username });
 
