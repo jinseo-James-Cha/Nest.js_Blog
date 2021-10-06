@@ -11,9 +11,11 @@ export class TransformInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       map((value) => {
-        if (value.description === null) {
-          value.description = '';
-        }
+        Object.keys(value).forEach((key) => {
+          if (value[`${key}`] === null) {
+            value[`${key}`] = '';
+          }
+        });
         return value;
       }),
     );
