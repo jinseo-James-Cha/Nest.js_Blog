@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   CallHandler,
   ExecutionContext,
@@ -5,6 +6,7 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
+import { GetUser } from './auth/get-user.decorator';
 import { winstonLogger } from './logger/winston.logger';
 
 @Injectable()
@@ -14,10 +16,12 @@ export class LoggingInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap(() => {
-        console.log(context);
-        // console.log(`logging interceptor +${Date.now() - start}ms`);
+        const req = context.switchToHttp().getRequest();
+        const method = req.method;
+        const url = req.originalUrl;
+        
         winstonLogger.info(
-          `[${context.getClass().name}]  +${Date.now() - start}ms`,
+          `[${context.getClass().name}] ${method} ${url} +${Date.now() - start}ms`,
         );
       }),
     );
