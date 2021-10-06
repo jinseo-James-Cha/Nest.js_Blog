@@ -13,7 +13,7 @@ export class Board extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   title: string;
 
   @Column({ nullable: true })
