@@ -14,8 +14,11 @@ export class LoggingInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap(() => {
+        console.log(context);
         // console.log(`logging interceptor +${Date.now() - start}ms`);
-        winstonLogger.info(`logging interceptor +${Date.now() - start}ms`);
+        winstonLogger.info(
+          `[${context.getClass().name}]  +${Date.now() - start}ms`,
+        );
       }),
     );
   }
