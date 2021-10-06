@@ -8,6 +8,7 @@ import {
   Post,
   Put,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/get-user.decorator';
@@ -17,6 +18,7 @@ import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import { boardLogger, hookLogger } from 'src/logger/winston.logger';
+import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
 
 @Controller('boards')
 @UseGuards(AuthGuard())
@@ -31,6 +33,7 @@ export class BoardsController {
   }
 
   @Get()
+  // @UseInterceptors(TransformInterceptor)
   getAllBoards(@GetUser() user: User): Promise<Board[]> {
     boardLogger.info(
       `In ${BoardsController.name} User ${user.username} trying to get all boards`,
