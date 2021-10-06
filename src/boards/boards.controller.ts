@@ -28,12 +28,12 @@ export class BoardsController {
   constructor(private boardsService: BoardsService) {}
 
   @Get('/:id')
+  @UseInterceptors(TransformInterceptor)
   getBoardById(@Param('id') id: number, @GetUser() user: User): Promise<Board> {
     return this.boardsService.getBoardById(id, user);
   }
 
   @Get()
-  @UseInterceptors(TransformInterceptor)
   getAllBoards(@GetUser() user: User): Promise<Board[]> {
     // boardLogger.info(
     //   `In ${BoardsController.name} User ${user.username} trying to get all boards`,
