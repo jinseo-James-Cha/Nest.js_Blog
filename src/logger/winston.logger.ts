@@ -73,7 +73,7 @@ export const hookLogger = winston.createLogger({
     // add slack hook
     new SlackHooks({
       webhookUrl:
-        'https://hooks.slack.com/services/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',
+        'https://hooks.slack.com/services/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',
     }),
   ],
 });
