@@ -25,7 +25,7 @@ export class AppModule implements NestModule {
         { path: 'boards', method: RequestMethod.POST },
         'boards/(.*)',
       )
-      .forRoutes('boards');
+      .forRoutes('auth');
       // .forRoutes({ path: 'boards', method: RequestMethod.GET });
       // .forRoutes(BoardController);
       // urther restrict a middleware to a particular request method by passing an object 

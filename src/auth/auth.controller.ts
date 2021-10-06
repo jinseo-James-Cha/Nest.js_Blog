@@ -8,6 +8,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { CachingInterceptor } from 'src/interceptors/caching.interceptor';
 import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
@@ -19,6 +20,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('/signup')
+  @UseInterceptors(CachingInterceptor)
   signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {
     return this.authService.signUp(authCredentialsDto);
   }
