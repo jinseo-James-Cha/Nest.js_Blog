@@ -33,6 +33,11 @@ export const winstonLogger = winston.createLogger({
       maxFiles: 7,
       filename: './logs/warning.log',
     }),
+    //slack webhook
+    new SlackHooks({
+      webhookUrl:
+        'https://hooks.slack.com/services/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',
+    }),
   ],
 });
 

@@ -6,8 +6,7 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
-import { GetUser } from './auth/get-user.decorator';
-import { winstonLogger } from './logger/winston.logger';
+import { winstonLogger } from '../logger/winston.logger';
 
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
@@ -23,6 +22,8 @@ export class LoggingInterceptor implements NestInterceptor {
         winstonLogger.info(
           `[${context.getClass().name}] ${method} ${url} +${Date.now() - start}ms`,
         );
+
+        
       }),
     );
   }

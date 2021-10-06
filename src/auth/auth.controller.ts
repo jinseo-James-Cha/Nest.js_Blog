@@ -8,7 +8,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { LoggingInterceptor } from 'src/logging.interceptor';
+import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { GetUser } from './get-user.decorator';
