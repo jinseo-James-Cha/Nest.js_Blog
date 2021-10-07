@@ -10,6 +10,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { CachingInterceptor } from 'src/interceptors/caching.interceptor';
 import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
+import { TimeoutInterceptor } from 'src/interceptors/timeout.interceptor';
 import { AuthService } from './auth.service';
 import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { GetUser } from './get-user.decorator';
@@ -34,9 +35,9 @@ export class AuthController {
   }
 
   @Post('/test')
-  @UseGuards(AuthGuard())
+  @UseInterceptors(TimeoutInterceptor)
   test(@Req() req) {
-    console.log('log', req);
+    console.log(req);
   }
 
   @Post('/testCustom')
