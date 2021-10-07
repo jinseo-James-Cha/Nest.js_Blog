@@ -2,6 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  HttpException,
+  HttpStatus,
   Post,
   Req,
   RequestTimeoutException,
@@ -35,11 +37,15 @@ export class AuthController {
     return this.authService.signIn(authCredentialsDto);
   }
 
+  timeoutTest(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   @Post('/test')
   @UseInterceptors(TimeoutInterceptor)
-  test() {
-    console.log('controller');
-    throw new RequestTimeoutException();
+  async test() {
+    await this.timeoutTest(6000);
+    console.log('asynchronous Route Handler done.');
   }
 
   @Post('/testCustom')
