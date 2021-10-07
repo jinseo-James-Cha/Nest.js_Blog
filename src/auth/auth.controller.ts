@@ -7,10 +7,13 @@ import {
   Post,
   Req,
   RequestTimeoutException,
+  UseFilters,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ExceptionClassBindingFilter } from 'src/filter/exception-class-binding.filter.ts.filter';
+import { HttpExceptionFilter } from 'src/filter/http-exception.filter';
 import { CachingInterceptor } from 'src/interceptors/caching.interceptor';
 import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 import { TimeoutInterceptor } from 'src/interceptors/timeout.interceptor';
@@ -19,6 +22,7 @@ import { AuthCredentialsDto } from './dto/auth-credential.dto';
 import { GetUser } from './get-user.decorator';
 import { User } from './user.entity';
 
+@UseFilters(ExceptionClassBindingFilter)
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
@@ -31,6 +35,7 @@ export class AuthController {
 
   @Post('/signin')
   @UseInterceptors(LoggingInterceptor)
+  @UseFilters(HttpExceptionFilter)
   signIn(
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ accessToken: string }> {
