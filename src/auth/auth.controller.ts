@@ -4,6 +4,7 @@ import {
   Get,
   Post,
   Req,
+  RequestTimeoutException,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -36,8 +37,9 @@ export class AuthController {
 
   @Post('/test')
   @UseInterceptors(TimeoutInterceptor)
-  test(@Req() req) {
-    console.log(req);
+  test() {
+    console.log('controller');
+    throw new RequestTimeoutException();
   }
 
   @Post('/testCustom')
