@@ -4,11 +4,20 @@ import {
   ExceptionFilter,
   HttpException,
 } from '@nestjs/common';
-import { TimeoutError } from 'rxjs';
+import { Request, Response } from 'express';
 
-// @Catch(HttpException)
-@Catch(TimeoutError)
-export class HttpExceptionFilter<T> implements ExceptionFilter {
-  catch(exception: T, host: ArgumentsHost) {
+@Catch(HttpException)
+export class HttpExceptionFilter implements ExceptionFilter {
+  catch(exception: HttpException, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const request = ctx.getRequest<Request>();
+    const response = ctx.getResponse<Response>();
+    const status = exception.getStatus();
+
+    response.status(status).json({
+      statusCode: status,
+      timestamp: new Date().toISOString(),
+      path: request.url,
+    });
   }
 }
