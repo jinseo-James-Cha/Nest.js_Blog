@@ -41,6 +41,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
           throw new UnauthorizedException();
       }
 
-      return user; // return user 안할 시, 401 에러발생.
+      return user; 
   }
 }

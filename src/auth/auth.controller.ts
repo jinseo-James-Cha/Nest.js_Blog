@@ -12,8 +12,8 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ExceptionClassBindingFilter } from 'src/filter/exception-class-binding.filter.ts.filter';
-import { HttpExceptionFilter } from 'src/filter/http-exception.filter';
+import { ExceptionClassBindingFilter } from 'src/filters/exception-class-binding.filter.ts.filter';
+import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
 import { CachingInterceptor } from 'src/interceptors/caching.interceptor';
 import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 import { TimeoutInterceptor } from 'src/interceptors/timeout.interceptor';
