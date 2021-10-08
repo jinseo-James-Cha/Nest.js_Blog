@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
+import { Role } from './role.enum';
 
 @Entity()
 @Unique(['username'])
@@ -22,4 +23,7 @@ export class User extends BaseEntity {
 
   @OneToMany((type) => Board, (board) => board.user, { eager: true })
   boards: Board[];
+
+  @Column()
+  roles: Role[];
 }
