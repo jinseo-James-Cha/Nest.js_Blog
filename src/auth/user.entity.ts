@@ -25,5 +25,5 @@ export class User extends BaseEntity {
   boards: Board[];
 
   @Column()
-  roles: Role[];
+  role: Role;
 }
