@@ -19,6 +19,8 @@ import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import { boardLogger, hookLogger } from 'src/logger/winston.logger';
 import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
+import { Roles } from 'src/auth/roles.decorator';
+import { Role } from 'src/auth/role.enum';
 
 @Controller('boards')
 @UseGuards(AuthGuard())
@@ -52,6 +54,7 @@ export class BoardsController {
   }
 
   @Post()
+  @Roles(Role.Admin)
   createBoard(
     @Body() createBoardDto: CreateBoardDto,
     @GetUser() user: User,
