@@ -21,6 +21,7 @@ import { boardLogger, hookLogger } from 'src/logger/winston.logger';
 import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
 import { Roles } from 'src/auth/roles.decorator';
 import { Role } from 'src/auth/role.enum';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 @Controller('boards')
 @UseGuards(AuthGuard())
@@ -55,6 +56,7 @@ export class BoardsController {
 
   @Post()
   @Roles(Role.Admin)
+  @UseGuards(RolesGuard)
   createBoard(
     @Body() createBoardDto: CreateBoardDto,
     @GetUser() user: User,
