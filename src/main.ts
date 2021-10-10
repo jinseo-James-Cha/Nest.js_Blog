@@ -3,8 +3,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as config from 'config';
 import { hookLogger, winstonLogger } from './logger/winston.logger';
-import { functionalLogger } from './middleware/logger.middleware';
 import * as helmet from 'helmet';
+import { functionalMiddleware } from './middleware/functional.middleware';
 
 async function bootstrap() {
   const logger = new Logger();
@@ -15,7 +15,7 @@ async function bootstrap() {
 
   app.use(helmet.hidePoweredBy());
   // app.use(helmet());
-  app.use(functionalLogger);
+  app.use(functionalMiddleware);
 
   // Global Pipe
   app.useGlobalPipes(
