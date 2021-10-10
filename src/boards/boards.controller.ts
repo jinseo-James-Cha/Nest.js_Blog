@@ -55,18 +55,12 @@ export class BoardsController {
   }
 
   @Post()
-  @Roles(Role.Admin) // @SetMetadata('roles', ['admin']) // @Roles(Role.Admin, Role.Sales)
+  @Roles(Role.Admin) // @SetMetadata('roles', ['Admin']) // @Roles(Role.Admin, Role.Sales)
   @UseGuards(RolesGuard)
   createBoard(
     @Body() createBoardDto: CreateBoardDto,
     @GetUser() user: User,
   ): Promise<Board> {
-    console.log('user Lionel wants to see this', user);
-
-    // this.logger.verbose(
-    //   `User ${user.username} creating a new board.
-    //   Payload : ${JSON.stringify(createBoardDto)}`,
-    // );
     return this.boardsService.createBoard(createBoardDto, user);
   }
 
