@@ -7,7 +7,6 @@ import { User } from "./user.entity";
 import { UserRepository } from "./user.repository";
 import * as config from 'config';
 
-// internally execute when Authguard() needed
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
@@ -20,11 +19,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       })
   }
   
-  
   /*  
       The validate method of your JwtStrategy will only be called 
-      when the token has been verified in terms of the encryption 
-      (corrrect key was used to sign it, in your case secretKey) and it is not expired. 
+      when the token has been verified in terms of the encryption and it is not expired. 
       Only after those two things have been checked, validate is called with the payload. 
       With it, you can then e.g. check if the user still exists. So the three steps are:
  
