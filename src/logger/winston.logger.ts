@@ -36,7 +36,7 @@ export const winstonLogger = winston.createLogger({
     // slack webhook
     new SlackHooks({
       webhookUrl:
-        'https://hooks.slack.com/services/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',
+        'https://hooks.slack.com/services/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',
     }),
   ],
 });
@@ -73,7 +73,7 @@ export const hookLogger = winston.createLogger({
     // add slack hook
     new SlackHooks({
       webhookUrl:
-        'https://hooks.slack.com/services/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',
+        'https://hooks.slack.com/services/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',
     }),
   ],
 });
