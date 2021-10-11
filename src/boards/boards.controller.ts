@@ -35,19 +35,10 @@ export class BoardsController {
 
   @Get()
   getAllBoards(@GetUser() user: User): Promise<Board[]> {
-    // boardLogger.info(
-    //   `In ${BoardsController.name} User ${user.username} trying to get all boards`,
-    // );
+    hookLogger.info(
+      `In ${BoardsController.name} User ${user.username} trying to get all boards`,
+    );
 
-    // hookLogger.info(
-    //   `In ${BoardsController.name} User ${user.username} trying to get all boards`,
-    // );
-
-    // this.logger.log(`User ${user.username} trying to get all boards`);
-    // this.logger.error(`User ${user.username} trying to get all boards`);
-    // this.logger.warn(`User ${user.username} trying to get all boards`);
-    // this.logger.debug(`User ${user.username} trying to get all boards`);
-    // this.logger.verbose(`User ${user.username} trying to get all boards`);
     return this.boardsService.getAllBoards(user);
   }
 
