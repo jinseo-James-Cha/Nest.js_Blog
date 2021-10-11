@@ -18,7 +18,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       statusCode: status,
       timestamp: new Date().toDateString(),
       path: request.url,
-      message: 'this is class binding exception filter',
+      message: 'Sorry, it went something wrong :) ',
     });
   }
 }

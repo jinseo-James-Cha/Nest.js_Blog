@@ -27,13 +27,13 @@ async function bootstrap() {
   );
 
   await app.listen(port);
-
-  // Logger.log(`Application running on port ${port}`);
-  // logger.log(`Application running on port ${port}`);
-
-  // winstonLogger.log('warn', `Application running on port ${port}`);
-  // winstonLogger.error(`Application running on port ${port}`);
-  // winstonLogger.info(`Application running on port ${port}`);
-  // winstonLogger.silly(`Application running on port ${port}`);
 }
 bootstrap();
+
+// Logger.log(`Application running on port ${port}`);
+// logger.log(`Application running on port ${port}`);
+
+// winstonLogger.log('warn', `Application running on port ${port}`);
+// winstonLogger.error(`Application running on port ${port}`);
+// winstonLogger.info(`Application running on port ${port}`);
+// winstonLogger.silly(`Application running on port ${port}`);
