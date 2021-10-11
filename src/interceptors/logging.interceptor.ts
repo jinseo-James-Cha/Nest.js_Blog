@@ -22,8 +22,6 @@ export class LoggingInterceptor implements NestInterceptor {
         winstonLogger.info(
           `[${context.getClass().name}] ${method} ${url} +${Date.now() - start}ms`,
         );
-
-        
       }),
     );
   }
