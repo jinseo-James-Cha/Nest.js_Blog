@@ -8,6 +8,7 @@ import {
   Put,
   UseGuards,
   UseInterceptors,
+  UsePipes,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/get-user.decorator';
@@ -21,6 +22,8 @@ import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
 import { Roles } from 'src/auth/roles.decorator';
 import { Role } from 'src/auth/role.enum';
 import { RolesGuard } from 'src/auth/roles.guard';
+import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
+import { BoardStatus } from './board-status.enum';
 
 @Controller('boards')
 @UseGuards(AuthGuard())
@@ -35,9 +38,9 @@ export class BoardsController {
 
   @Get()
   getAllBoards(@GetUser() user: User): Promise<Board[]> {
-    hookLogger.info(
-      `In ${BoardsController.name} User ${user.username} trying to get all boards`,
-    );
+    // hookLogger.info(
+    //   `In ${BoardsController.name} User ${user.username} trying to get all boards`,
+    // );
 
     return this.boardsService.getAllBoards(user);
   }
@@ -46,6 +49,7 @@ export class BoardsController {
   @Roles(Role.Admin) // @SetMetadata('roles', ['Admin']) // @Roles(Role.Admin, Role.Sales)
   @UseGuards(RolesGuard)
   createBoard(
+    @Body('status', BoardStatusValidationPipe) status: BoardStatus,
     @Body() createBoardDto: CreateBoardDto,
     @GetUser() user: User,
   ): Promise<Board> {
