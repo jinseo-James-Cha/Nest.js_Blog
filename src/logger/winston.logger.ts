@@ -21,7 +21,7 @@ export const winstonLogger = winston.createLogger({
     new winston.transports.File({
       level: 'info',
       handleExceptions: true,
-      maxsize: 5242880,
+      maxsize: 5242880, // 5MB
       maxFiles: 7,
       filename: './logs/combined.log',
     }),

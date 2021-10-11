@@ -46,9 +46,9 @@ export class AuthController {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  @Post('/test')
+  @Get('/testTimeout')
   @UseInterceptors(TimeoutInterceptor)
-  async test() {
+  async testTimeout() {
     await this.timeoutTest(6000);
     console.log('asynchronous Route Handler done.');
   }
