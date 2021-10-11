@@ -1,24 +1,34 @@
-/* eslint-disable prettier/prettier */
-import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { PassportStrategy } from "@nestjs/passport";
-import { InjectRepository } from "@nestjs/typeorm";
-import { ExtractJwt, Strategy } from "passport-jwt";
-import { User } from "./user.entity";
-import { UserRepository } from "./user.repository";
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { PassportStrategy } from '@nestjs/passport';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ExtractJwt, Strategy } from 'passport-jwt';
+import { User } from './user.entity';
+import { UserRepository } from './user.repository';
 import * as config from 'config';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
     @InjectRepository(UserRepository)
-    private userRepository: UserRepository
+    private userRepository: UserRepository,
   ) {
-      super({
-        secretOrKey: process.env.JWT_SECRET || config.get('jwt.secret'),
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      })
+    super({
+      secretOrKey: process.env.JWT_SECRET || config.get('jwt.secret'),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    });
   }
-  
+
+  async validate(payload) {
+    console.log('payload', payload);
+    const { username } = payload;
+    const user: User = await this.userRepository.findOne({ username });
+
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+
+    return user;
+  }
   /*  
       The validate method of your JwtStrategy will only be called 
       when the token has been verified in terms of the encryption and it is not expired. 
@@ -29,15 +39,4 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       2. Token is not expired
       3. Custom payload validation
   */
-  async validate(payload) {
-      console.log('payload', payload);
-      const { username } = payload;
-      const user: User = await this.userRepository.findOne({ username });
-
-      if( !user ) {
-          throw new UnauthorizedException();
-      }
-
-      return user; 
-  }
 }

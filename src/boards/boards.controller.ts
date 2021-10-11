@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  Logger,
   Param,
   Post,
   Put,
@@ -26,8 +25,6 @@ import { RolesGuard } from 'src/auth/roles.guard';
 @Controller('boards')
 @UseGuards(AuthGuard())
 export class BoardsController {
-  private logger = new Logger('JamesBoardsController');
-
   constructor(private boardsService: BoardsService) {}
 
   @Get('/:id')
