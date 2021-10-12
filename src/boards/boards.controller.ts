@@ -19,9 +19,9 @@ import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
 import { boardLogger, hookLogger } from 'src/logger/winston.logger';
 import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
-import { Roles } from 'src/auth/roles.decorator';
-import { Role } from 'src/auth/role.enum';
-import { RolesGuard } from 'src/auth/roles.guard';
+import { Roles } from 'src/auth/role/roles.decorator';
+import { Role } from 'src/auth/role/role.enum';
+import { RolesGuard } from 'src/auth/role/roles.guard';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
 import { BoardStatus } from './board-status.enum';
 

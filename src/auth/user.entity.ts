@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { Role } from './role.enum';
+import { Role } from './role/role.enum';
 
 @Entity()
 @Unique(['username'])
