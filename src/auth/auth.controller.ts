@@ -30,6 +30,7 @@ export class AuthController {
   @Post('/signup')
   @UseInterceptors(CachingInterceptor)
   signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void> {
+    console.log('This never executes because of the hardcoded interceptor.');
     return this.authService.signUp(authCredentialsDto);
   }
 
@@ -50,7 +51,7 @@ export class AuthController {
   @UseInterceptors(TimeoutInterceptor)
   async testTimeout() {
     await this.timeoutTest(6000);
-    console.log('asynchronous Route Handler done.');
+    console.log('Route Handler done.');
   }
 
   @Post('/testCustom')

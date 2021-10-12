@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  SetMetadata,
   UseGuards,
   UseInterceptors,
   UsePipes,
