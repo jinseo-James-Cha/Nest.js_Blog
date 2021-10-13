@@ -6,10 +6,8 @@ import {
   Param,
   Post,
   Put,
-  SetMetadata,
   UseGuards,
   UseInterceptors,
-  UsePipes,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/get-user.decorator';
@@ -18,7 +16,6 @@ import { Board } from './board.entity';
 import { BoardsService } from './boards.service';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { UpdateBoardDto } from './dto/update-board.dto';
-import { boardLogger, hookLogger } from 'src/logger/winston.logger';
 import { TransformInterceptor } from 'src/interceptors/transform.interceptor';
 import { Roles } from 'src/auth/role/roles.decorator';
 import { Role } from 'src/auth/role/role.enum';
@@ -42,7 +39,6 @@ export class BoardsController {
     // hookLogger.info(
     //   `In ${BoardsController.name} User ${user.username} trying to get all boards`,
     // );
-
     return this.boardsService.getAllBoards(user);
   }
 
