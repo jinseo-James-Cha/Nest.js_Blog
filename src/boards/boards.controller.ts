@@ -37,7 +37,7 @@ export class BoardsController {
   @Get()
   getAllBoards(@GetUser() user: User): Promise<Board[]> {
     // hookLogger.info(
-    //   `In ${BoardsController.name} User ${user.username} trying to get all boards`,
+    //   `In ${BoardsController.name} User ${user.username} requesting to get all boards`,
     // );
     return this.boardsService.getAllBoards(user);
   }
