@@ -78,6 +78,7 @@ export const hookLogger = winston.createLogger({
   ],
 });
 
+// option usage
 // process.env.NODE_ENV is undefined as a default
 if (process.env.NODE_ENV === 'dev') {
   winstonLogger.add(
