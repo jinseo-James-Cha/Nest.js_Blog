@@ -1,6 +1,6 @@
 import * as winston from 'winston';
-import * as SlackHooks from 'winston-slack-webhook-transport'; // ok
-import SlackHook = require('winston-slack-webhook-transport'); // ok
+import * as SlackHooks from 'winston-slack-webhook-transport'; // nestjs way
+import SlackHook = require('winston-slack-webhook-transport'); // express way
 
 const { combine, timestamp, printf } = winston.format;
 
