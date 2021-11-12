@@ -5,6 +5,6 @@ export function functionalMiddleware(
   res: Response,
   next: NextFunction,
 ) {
-  console.log('Functional Middleware working here');
+  console.log('Functional Middleware working here!');
   next();
 }
